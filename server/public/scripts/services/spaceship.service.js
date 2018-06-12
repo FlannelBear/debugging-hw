@@ -1,4 +1,4 @@
-app.service('SpaceShipService', [function() {
+app.service('SpaceShipService', ['$http', function($http) {
     console.log('SpaceShipService has been loaded');
     const self = this;
 
@@ -23,7 +23,7 @@ app.service('SpaceShipService', [function() {
 
     // Get a list of existing ships, includes crew counts
     self.getShips = function() {
-        $http({
+        return $http({
             method: 'GET',
             url:'/ships'
         }).then((response) => {

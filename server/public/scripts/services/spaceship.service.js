@@ -8,12 +8,12 @@ app.service('SpaceShipService', ['$http', function($http) {
 
     // Add a new space ship
     self.addShip = function (shipToAdd) {
-        $http({
+        return $http({
             method: 'POST',
             url: '/ships',
             data: shipToAdd
         }).then((response) => {
-            alert('Success! Try refreshing the page?!?');
+            // alert('Success! Try refreshing the page?!?');
             self.getShips();
         }).catch((error) => {
             console.log('error making rent get request', error);
@@ -23,6 +23,7 @@ app.service('SpaceShipService', ['$http', function($http) {
 
     // Get a list of existing ships, includes crew counts
     self.getShips = function() {
+        console.log('In get ships');
         return $http({
             method: 'GET',
             url:'/ships'
@@ -38,12 +39,12 @@ app.service('SpaceShipService', ['$http', function($http) {
 
     // Delete an existing ship, must have no crew!
     self.deleteShip = function(shipId) {
-        $http({
+        return $http({
             method: 'DELETE',
             url: `/ships/${shipId}`
         }).then((response) => {
-            self.getShips();
-            alert('Success! Try refreshing the page?!?');
+            // self.getShips();
+            // alert('Success! Try refreshing the page?!?');
         }).catch((error) => {
             console.log('error making rent get request', error);
             alert('Something went wrong! Check the server.');
@@ -96,6 +97,7 @@ app.service('SpaceShipService', ['$http', function($http) {
     }
 
     // Load initial data
+    console.log('Bottom of service');
     self.getShips();
     self.getCrew();
 }]);

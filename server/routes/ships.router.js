@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
                 ON "s"."id" = "c"."ship_id"
                 GROUP BY "s"."id";`)
         .then(result => {
-            // console.log(result);
+            console.log(result);
             res.send(result.rows);
         })
         .catch(error => {
@@ -34,8 +34,8 @@ router.get('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    console.log('DELETE /ships', req.params);
-    const shipId = req.query.id;
+    console.log('DELETE /ships', req.params.id);
+    const shipId = req.params.id;
     pool.query('DELETE FROM "ships" WHERE "id" = $1;', [shipId])
         .then((result) => {
             res.sendStatus(200);
